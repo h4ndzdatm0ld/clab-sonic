@@ -1,0 +1,131 @@
+# https://containerlab.dev/manual/kinds/sonic-vm/
+name: sonic-5-stage-clos
+
+topology:
+  kinds:
+    linux:
+      image: ghcr.io/hellt/network-multitool
+
+  nodes:
+    # Spine Layer
+    spine1:
+      kind: sonic-vm
+      image: h4ndzdatm0ld/vr-sonic:202405
+      startup-config: ./startupConfigs/spine1/config/config_db.json
+      mgmt-ipv4: 172.20.20.4
+    spine2:
+      kind: sonic-vm
+      image: h4ndzdatm0ld/vr-sonic:202405
+      startup-config: ./startupConfigs/spine2/config/config_db.json
+      mgmt-ipv4: 172.20.20.9
+    spine3:
+      kind: sonic-vm
+      image: h4ndzdatm0ld/vr-sonic:202405
+      startup-config: ./startupConfigs/spine3/config/config_db.json
+      mgmt-ipv4: 172.20.20.7
+    spine4:
+      kind: sonic-vm
+      image: h4ndzdatm0ld/vr-sonic:202405
+      startup-config: ./startupConfigs/spine4/config/config_db.json
+      mgmt-ipv4: 172.20.20.8
+    spine5:
+      kind: sonic-vm
+      image: h4ndzdatm0ld/vr-sonic:202405
+      startup-config: ./startupConfigs/spine5/config/config_db.json
+      mgmt-ipv4: 172.20.20.6
+
+    # Leaf Layer
+    leaf1:
+      kind: sonic-vm
+      image: h4ndzdatm0ld/vr-sonic:202405
+      startup-config: ./startupConfigs/leaf1/config/config_db.json
+      mgmt-ipv4: 172.20.20.12
+    leaf2:
+      kind: sonic-vm
+      image: h4ndzdatm0ld/vr-sonic:202405
+      startup-config: ./startupConfigs/leaf2/config/config_db.json
+      mgmt-ipv4: 172.20.20.5
+    leaf3:
+      kind: sonic-vm
+      image: h4ndzdatm0ld/vr-sonic:202405
+      startup-config: ./startupConfigs/leaf3/config/config_db.json
+      mgmt-ipv4: 172.20.20.15
+    leaf4:
+      kind: sonic-vm
+      image: h4ndzdatm0ld/vr-sonic:202405
+      startup-config: ./startupConfigs/leaf4/config/config_db.json
+      mgmt-ipv4: 172.20.20.10
+
+    # Super Spine
+    superspine1:
+      kind: sonic-vm
+      image: h4ndzdatm0ld/vr-sonic:202405
+      startup-config: ./startupConfigs/superspine1/config/config_db.json
+      mgmt-ipv4: 172.20.20.16
+    superspine2:
+      kind: sonic-vm
+      image: h4ndzdatm0ld/vr-sonic:202405
+      startup-config: ./startupConfigs/superspine2/config/config_db.json
+      mgmt-ipv4: 172.20.20.14
+
+    # Clients
+    client1:
+      kind: linux
+      mgmt-ipv4: 172.20.20.3
+    client2:
+      kind: linux
+      mgmt-ipv4: 172.20.20.2
+    client3:
+      kind: linux
+      mgmt-ipv4: 172.20.20.13
+    client4:
+      kind: linux
+      mgmt-ipv4: 172.20.20.11
+
+  links:
+    # Leaf to Spine Links POD1
+    - endpoints: ["leaf1:eth1", "spine1:eth1"]  # Ethernet0 -> Ethernet0
+    - endpoints: ["leaf1:eth2", "spine2:eth1"]  # Ethernet4 -> Ethernet0
+    - endpoints: ["leaf2:eth1", "spine1:eth2"]  # Ethernet0 -> Ethernet4
+    - endpoints: ["leaf2:eth2", "spine2:eth2"]  # Ethernet4 -> Ethernet4
+
+    # Spine to Super Spine Links POD1
+    - endpoints: ["spine1:eth3", "superspine1:eth1"]  # Ethernet8 -> Ethernet0
+    - endpoints: ["spine2:eth3", "superspine2:eth1"]  # Ethernet8 -> Ethernet0
+
+    # Leaf to Spine Links POD2
+    - endpoints: ["leaf3:eth1", "spine3:eth1"]  # Ethernet0 -> Ethernet0
+    - endpoints: ["leaf3:eth2", "spine4:eth1"]  # Ethernet4 -> Ethernet0
+    - endpoints: ["leaf4:eth1", "spine3:eth2"]  # Ethernet0 -> Ethernet4
+    - endpoints: ["leaf4:eth2", "spine4:eth2"]  # Ethernet4 -> Ethernet4
+
+    # Spine to Super Spine Links POD2
+    - endpoints: ["spine3:eth3", "superspine1:eth2"]  # Ethernet8 -> Ethernet4
+    - endpoints: ["spine4:eth3", "superspine2:eth2"]  # Ethernet8 -> Ethernet4
+
+    # Client Connection Links
+    - endpoints: ["client1:eth1", "leaf1:eth3"]  # Client -> Ethernet8
+    - endpoints: ["client2:eth1", "leaf2:eth3"]  # Client -> Ethernet8
+    - endpoints: ["client3:eth1", "leaf3:eth3"]  # Client -> Ethernet8
+    - endpoints: ["client4:eth1", "leaf4:eth3"]  # Client -> Ethernet8
+
+
+# IP Subnetting Schema
+# Leaf1 ↔ Spine1       10.100.1.0/30     10.100.1.1     10.100.1.2
+# Leaf1 ↔ Spine2       10.100.1.4/30     10.100.1.5     10.100.1.6
+# Leaf2 ↔ Spine1       10.100.1.8/30     10.100.1.9     10.100.1.10
+# Leaf2 ↔ Spine2       10.100.1.12/30    10.100.1.13    10.100.1.14
+# Leaf3 ↔ Spine3       10.100.1.16/30    10.100.1.17    10.100.1.18
+# Leaf3 ↔ Spine4       10.100.1.20/30    10.100.1.21    10.100.1.22
+# Leaf4 ↔ Spine3       10.100.1.24/30    10.100.1.25    10.100.1.26
+# Leaf4 ↔ Spine4       10.100.1.28/30    10.100.1.29    10.100.1.30
+# Spine1 ↔ SuperSpine1 10.100.2.0/30     10.100.2.1     10.100.2.2
+# Spine2 ↔ SuperSpine2 10.100.2.4/30     10.100.2.5     10.100.2.6
+# Spine3 ↔ SuperSpine1 10.100.2.8/30     10.100.2.9     10.100.2.10
+# Spine4 ↔ SuperSpine2 10.100.2.12/30    10.100.2.13    10.100.2.14
+# Spine5 ↔ SuperSpine1 10.100.2.16/30    10.100.2.17    10.100.2.18
+# Spine5 ↔ SuperSpine2 10.100.2.20/30    10.100.2.21    10.100.2.22
+# Client1 ↔ Leaf1      10.100.3.0/30     10.100.3.1     10.100.3.2
+# Client2 ↔ Leaf2      10.100.3.4/30     10.100.3.5     10.100.3.6
+# Client3 ↔ Leaf3      10.100.3.8/30     10.100.3.9     10.100.3.10
+# Client4 ↔ Leaf4      10.100.3.12/30    10.100.3.13    10.100.3.14
