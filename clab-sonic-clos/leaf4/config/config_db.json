@@ -3,8 +3,8 @@
         "localhost": {
             "hwsku": "Force10-S6000",
             "platform": "x86_64-kvm_x86_64-r0",
-            "mac": "22:60:13:51:17:ea",
-            "hostname": "Spine-5",
+            "mac": "22:cf:fd:bc:b2:e2",
+            "hostname": "Leaf-4",
             "type": "LeafRouter",
             "bgp_asn": "65100"
         }
@@ -275,7 +275,7 @@
         }
     },
     "LOOPBACK_INTERFACE": {
-        "Loopback0|10.1.0.1/32": {}
+        "Loopback0|100.100.0.4/32": {}
     },
     "BGP_NEIGHBOR": {
         "10.0.0.1": {

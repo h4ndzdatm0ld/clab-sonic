@@ -275,7 +275,7 @@
         }
     },
     "LOOPBACK_INTERFACE": {
-        "Loopback0|10.1.0.1/32": {}
+        "Loopback0|100.100.0.4/32": {}
     },
     "BGP_NEIGHBOR": {
         "10.0.0.1": {
