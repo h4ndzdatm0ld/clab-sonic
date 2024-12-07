@@ -3,8 +3,11 @@
         "localhost": {
             "hwsku": "Force10-S6000",
             "platform": "x86_64-kvm_x86_64-r0",
-            "mac": "22:a2:e9:72:6d:93",
-            "hostname": "Spine-4",
+            "mac": "22:bc:a6:68:96:c0",
+            "default_bgp_status": "up",
+            "default_pfcwd_status": "disable",
+            "frr_mgmt_framework_config": "true",
+            "hostname": "Spine-1",
             "type": "Spine",
             "bgp_asn": "65200"
         }
@@ -276,51 +279,32 @@
     },
     "LOOPBACK_INTERFACE": {
         "Loopback0": {},
-        "Loopback0|100.100.10.4/32": {}
+        "Loopback0|100.100.10.1/32": {}
+    },
+    "ROUTER_ASN": {
+        "65100": {
+            "router_id": "100.100.0.1"
+        }
     },
     "BGP_NEIGHBOR": {
-        "10.0.0.1": {
+        "10.100.1.1": {
             "rrclient": 0,
-            "name": "ARISTA01T2",
-            "local_addr": "10.0.0.0",
+            "name": "Leaf1Spine1",
+            "local_addr": "10.100.1.2",
             "nhopself": 0,
             "holdtime": "180",
-            "asn": "65200",
+            "asn": "65100",
             "keepalive": "60"
         }
     },
     "INTERFACE": {
-        "Ethernet0|10.0.0.0/31": {},
+        "Ethernet0": {},
+        "Ethernet0|10.100.1.2/30": {},
+        "Ethernet4": {},
         "Ethernet4|10.0.0.2/31": {},
+        "Ethernet8": {},
         "Ethernet8|10.0.0.4/31": {},
-        "Ethernet12|10.0.0.6/31": {},
-        "Ethernet16": {},
-        "Ethernet20": {},
-        "Ethernet24": {},
-        "Ethernet28": {},
-        "Ethernet32": {},
-        "Ethernet36": {},
-        "Ethernet40": {},
-        "Ethernet44": {},
-        "Ethernet48": {},
-        "Ethernet52": {},
-        "Ethernet56": {},
-        "Ethernet60": {},
-        "Ethernet64": {},
-        "Ethernet68": {},
-        "Ethernet72": {},
-        "Ethernet76": {},
-        "Ethernet80": {},
-        "Ethernet84": {},
-        "Ethernet88": {},
-        "Ethernet92": {},
-        "Ethernet96": {},
-        "Ethernet100": {},
-        "Ethernet104": {},
-        "Ethernet108": {},
-        "Ethernet112": {},
-        "Ethernet116": {},
-        "Ethernet120": {},
-        "Ethernet124": {}
+        "Ethernet12": {},
+        "Ethernet12|10.0.0.6/31": {}
     }
 }

@@ -1,5 +1,5 @@
 # https://containerlab.dev/manual/kinds/sonic-vm/
-name: sonic-clos
+name: sonic
 
 topology:
   kinds:
@@ -12,11 +12,13 @@ topology:
       kind: sonic-vm
       image: h4ndzdatm0ld/vr-sonic:202405
       startup-config: ./startupConfigs/spine1/config/config_db.json
+      enforce-startup-config: true
       mgmt-ipv4: 172.20.20.4
     spine2:
       kind: sonic-vm
       image: h4ndzdatm0ld/vr-sonic:202405
       startup-config: ./startupConfigs/spine2/config/config_db.json
+      enforce-startup-config: true
       mgmt-ipv4: 172.20.20.9
     spine3:
       kind: sonic-vm
@@ -34,6 +36,7 @@ topology:
       kind: sonic-vm
       image: h4ndzdatm0ld/vr-sonic:202405
       startup-config: ./startupConfigs/leaf1/config/config_db.json
+      enforce-startup-config: true
       mgmt-ipv4: 172.20.20.12
     leaf2:
       kind: sonic-vm
@@ -66,16 +69,16 @@ topology:
     # Clients
     client1:
       kind: linux
-      mgmt-ipv4: 172.20.20.3
+      mgmt-ipv4: 172.20.20.101
     client2:
       kind: linux
-      mgmt-ipv4: 172.20.20.2
+      mgmt-ipv4: 172.20.20.102
     client3:
       kind: linux
-      mgmt-ipv4: 172.20.20.13
+      mgmt-ipv4: 172.20.20.103
     client4:
       kind: linux
-      mgmt-ipv4: 172.20.20.11
+      mgmt-ipv4: 172.20.20.104
 
   links:
     # Leaf to Spine Links POD1

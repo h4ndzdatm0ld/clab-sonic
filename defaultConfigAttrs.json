@@ -116,14 +116,295 @@
       "tsa_enabled": "false"
     }
   },
-  "BGP_GLOBALS": {
-    "default": {
-      "default_ipv4_unicast": "true",
-      "local_asn": "65100",
-      "router_id": "100.100.0.1"
-    }
-  },
   "BGP_NEIGHBOR": {
+    "10.0.0.1": {
+      "asn": "65200",
+      "holdtime": "180",
+      "keepalive": "60",
+      "local_addr": "10.0.0.0",
+      "name": "ARISTA01T2",
+      "nhopself": "0",
+      "rrclient": "0"
+    },
+    "10.0.0.11": {
+      "asn": "65200",
+      "holdtime": "180",
+      "keepalive": "60",
+      "local_addr": "10.0.0.10",
+      "name": "ARISTA06T2",
+      "nhopself": "0",
+      "rrclient": "0"
+    },
+    "10.0.0.13": {
+      "asn": "65200",
+      "holdtime": "180",
+      "keepalive": "60",
+      "local_addr": "10.0.0.12",
+      "name": "ARISTA07T2",
+      "nhopself": "0",
+      "rrclient": "0"
+    },
+    "10.0.0.15": {
+      "asn": "65200",
+      "holdtime": "180",
+      "keepalive": "60",
+      "local_addr": "10.0.0.14",
+      "name": "ARISTA08T2",
+      "nhopself": "0",
+      "rrclient": "0"
+    },
+    "10.0.0.17": {
+      "asn": "65200",
+      "holdtime": "180",
+      "keepalive": "60",
+      "local_addr": "10.0.0.16",
+      "name": "ARISTA09T2",
+      "nhopself": "0",
+      "rrclient": "0"
+    },
+    "10.0.0.19": {
+      "asn": "65200",
+      "holdtime": "180",
+      "keepalive": "60",
+      "local_addr": "10.0.0.18",
+      "name": "ARISTA10T2",
+      "nhopself": "0",
+      "rrclient": "0"
+    },
+    "10.0.0.21": {
+      "asn": "65200",
+      "holdtime": "180",
+      "keepalive": "60",
+      "local_addr": "10.0.0.20",
+      "name": "ARISTA11T2",
+      "nhopself": "0",
+      "rrclient": "0"
+    },
+    "10.0.0.23": {
+      "asn": "65200",
+      "holdtime": "180",
+      "keepalive": "60",
+      "local_addr": "10.0.0.22",
+      "name": "ARISTA12T2",
+      "nhopself": "0",
+      "rrclient": "0"
+    },
+    "10.0.0.25": {
+      "asn": "65200",
+      "holdtime": "180",
+      "keepalive": "60",
+      "local_addr": "10.0.0.24",
+      "name": "ARISTA13T2",
+      "nhopself": "0",
+      "rrclient": "0"
+    },
+    "10.0.0.27": {
+      "asn": "65200",
+      "holdtime": "180",
+      "keepalive": "60",
+      "local_addr": "10.0.0.26",
+      "name": "ARISTA14T2",
+      "nhopself": "0",
+      "rrclient": "0"
+    },
+    "10.0.0.29": {
+      "asn": "65200",
+      "holdtime": "180",
+      "keepalive": "60",
+      "local_addr": "10.0.0.28",
+      "name": "ARISTA15T2",
+      "nhopself": "0",
+      "rrclient": "0"
+    },
+    "10.0.0.3": {
+      "asn": "65200",
+      "holdtime": "180",
+      "keepalive": "60",
+      "local_addr": "10.0.0.2",
+      "name": "ARISTA02T2",
+      "nhopself": "0",
+      "rrclient": "0"
+    },
+    "10.0.0.31": {
+      "asn": "65200",
+      "holdtime": "180",
+      "keepalive": "60",
+      "local_addr": "10.0.0.30",
+      "name": "ARISTA16T2",
+      "nhopself": "0",
+      "rrclient": "0"
+    },
+    "10.0.0.33": {
+      "asn": "64001",
+      "holdtime": "180",
+      "keepalive": "60",
+      "local_addr": "10.0.0.32",
+      "name": "ARISTA01T0",
+      "nhopself": "0",
+      "rrclient": "0"
+    },
+    "10.0.0.35": {
+      "asn": "64002",
+      "holdtime": "180",
+      "keepalive": "60",
+      "local_addr": "10.0.0.34",
+      "name": "ARISTA02T0",
+      "nhopself": "0",
+      "rrclient": "0"
+    },
+    "10.0.0.37": {
+      "asn": "64003",
+      "holdtime": "180",
+      "keepalive": "60",
+      "local_addr": "10.0.0.36",
+      "name": "ARISTA03T0",
+      "nhopself": "0",
+      "rrclient": "0"
+    },
+    "10.0.0.39": {
+      "asn": "64004",
+      "holdtime": "180",
+      "keepalive": "60",
+      "local_addr": "10.0.0.38",
+      "name": "ARISTA04T0",
+      "nhopself": "0",
+      "rrclient": "0"
+    },
+    "10.0.0.41": {
+      "asn": "64005",
+      "holdtime": "180",
+      "keepalive": "60",
+      "local_addr": "10.0.0.40",
+      "name": "ARISTA05T0",
+      "nhopself": "0",
+      "rrclient": "0"
+    },
+    "10.0.0.43": {
+      "asn": "64006",
+      "holdtime": "180",
+      "keepalive": "60",
+      "local_addr": "10.0.0.42",
+      "name": "ARISTA06T0",
+      "nhopself": "0",
+      "rrclient": "0"
+    },
+    "10.0.0.45": {
+      "asn": "64007",
+      "holdtime": "180",
+      "keepalive": "60",
+      "local_addr": "10.0.0.44",
+      "name": "ARISTA07T0",
+      "nhopself": "0",
+      "rrclient": "0"
+    },
+    "10.0.0.47": {
+      "asn": "64008",
+      "holdtime": "180",
+      "keepalive": "60",
+      "local_addr": "10.0.0.46",
+      "name": "ARISTA08T0",
+      "nhopself": "0",
+      "rrclient": "0"
+    },
+    "10.0.0.49": {
+      "asn": "64009",
+      "holdtime": "180",
+      "keepalive": "60",
+      "local_addr": "10.0.0.48",
+      "name": "ARISTA09T0",
+      "nhopself": "0",
+      "rrclient": "0"
+    },
+    "10.0.0.5": {
+      "asn": "65200",
+      "holdtime": "180",
+      "keepalive": "60",
+      "local_addr": "10.0.0.4",
+      "name": "ARISTA03T2",
+      "nhopself": "0",
+      "rrclient": "0"
+    },
+    "10.0.0.51": {
+      "asn": "64010",
+      "holdtime": "180",
+      "keepalive": "60",
+      "local_addr": "10.0.0.50",
+      "name": "ARISTA10T0",
+      "nhopself": "0",
+      "rrclient": "0"
+    },
+    "10.0.0.53": {
+      "asn": "64011",
+      "holdtime": "180",
+      "keepalive": "60",
+      "local_addr": "10.0.0.52",
+      "name": "ARISTA11T0",
+      "nhopself": "0",
+      "rrclient": "0"
+    },
+    "10.0.0.55": {
+      "asn": "64012",
+      "holdtime": "180",
+      "keepalive": "60",
+      "local_addr": "10.0.0.54",
+      "name": "ARISTA12T0",
+      "nhopself": "0",
+      "rrclient": "0"
+    },
+    "10.0.0.57": {
+      "asn": "64013",
+      "holdtime": "180",
+      "keepalive": "60",
+      "local_addr": "10.0.0.56",
+      "name": "ARISTA13T0",
+      "nhopself": "0",
+      "rrclient": "0"
+    },
+    "10.0.0.59": {
+      "asn": "64014",
+      "holdtime": "180",
+      "keepalive": "60",
+      "local_addr": "10.0.0.58",
+      "name": "ARISTA14T0",
+      "nhopself": "0",
+      "rrclient": "0"
+    },
+    "10.0.0.61": {
+      "asn": "64015",
+      "holdtime": "180",
+      "keepalive": "60",
+      "local_addr": "10.0.0.60",
+      "name": "ARISTA15T0",
+      "nhopself": "0",
+      "rrclient": "0"
+    },
+    "10.0.0.63": {
+      "asn": "64016",
+      "holdtime": "180",
+      "keepalive": "60",
+      "local_addr": "10.0.0.62",
+      "name": "ARISTA16T0",
+      "nhopself": "0",
+      "rrclient": "0"
+    },
+    "10.0.0.7": {
+      "asn": "65200",
+      "holdtime": "180",
+      "keepalive": "60",
+      "local_addr": "10.0.0.6",
+      "name": "ARISTA04T2",
+      "nhopself": "0",
+      "rrclient": "0"
+    },
+    "10.0.0.9": {
+      "asn": "65200",
+      "holdtime": "180",
+      "keepalive": "60",
+      "local_addr": "10.0.0.8",
+      "name": "ARISTA05T2",
+      "nhopself": "0",
+      "rrclient": "0"
+    },
     "10.100.1.2": {
       "asn": "65200",
       "holdtime": "180",
@@ -397,41 +678,71 @@
   },
   "INTERFACE": {
     "Ethernet0": {},
+    "Ethernet0|10.0.0.0/31": {},
     "Ethernet0|10.100.1.1/30": {},
     "Ethernet100": {},
+    "Ethernet100|10.0.0.50/31": {},
     "Ethernet104": {},
+    "Ethernet104|10.0.0.52/31": {},
     "Ethernet108": {},
+    "Ethernet108|10.0.0.54/31": {},
     "Ethernet112": {},
+    "Ethernet112|10.0.0.56/31": {},
     "Ethernet116": {},
+    "Ethernet116|10.0.0.58/31": {},
     "Ethernet12": {},
     "Ethernet120": {},
+    "Ethernet120|10.0.0.60/31": {},
     "Ethernet124": {},
+    "Ethernet124|10.0.0.62/31": {},
     "Ethernet12|10.0.0.6/31": {},
     "Ethernet16": {},
+    "Ethernet16|10.0.0.8/31": {},
     "Ethernet20": {},
+    "Ethernet20|10.0.0.10/31": {},
     "Ethernet24": {},
+    "Ethernet24|10.0.0.12/31": {},
     "Ethernet28": {},
+    "Ethernet28|10.0.0.14/31": {},
     "Ethernet32": {},
+    "Ethernet32|10.0.0.16/31": {},
     "Ethernet36": {},
+    "Ethernet36|10.0.0.18/31": {},
     "Ethernet4": {},
     "Ethernet40": {},
+    "Ethernet40|10.0.0.20/31": {},
     "Ethernet44": {},
+    "Ethernet44|10.0.0.22/31": {},
     "Ethernet48": {},
+    "Ethernet48|10.0.0.24/31": {},
+    "Ethernet4|10.0.0.2/31": {},
     "Ethernet4|10.100.1.4/31": {},
     "Ethernet52": {},
+    "Ethernet52|10.0.0.26/31": {},
     "Ethernet56": {},
+    "Ethernet56|10.0.0.28/31": {},
     "Ethernet60": {},
+    "Ethernet60|10.0.0.30/31": {},
     "Ethernet64": {},
+    "Ethernet64|10.0.0.32/31": {},
     "Ethernet68": {},
+    "Ethernet68|10.0.0.34/31": {},
     "Ethernet72": {},
+    "Ethernet72|10.0.0.36/31": {},
     "Ethernet76": {},
+    "Ethernet76|10.0.0.38/31": {},
     "Ethernet8": {},
     "Ethernet80": {},
+    "Ethernet80|10.0.0.40/31": {},
     "Ethernet84": {},
+    "Ethernet84|10.0.0.42/31": {},
     "Ethernet88": {},
+    "Ethernet88|10.0.0.44/31": {},
     "Ethernet8|10.0.0.4/31": {},
     "Ethernet92": {},
-    "Ethernet96": {}
+    "Ethernet92|10.0.0.46/31": {},
+    "Ethernet96": {},
+    "Ethernet96|10.0.0.48/31": {}
   },
   "KDUMP": {
     "config": {
@@ -768,6 +1079,7 @@
   },
   "LOOPBACK_INTERFACE": {
     "Loopback0": {},
+    "Loopback0|10.1.0.1/32": {},
     "Loopback0|100.100.0.1/32": {}
   },
   "NTP": {
@@ -1050,6 +1362,11 @@
       "lanes": "125,126,127,128",
       "mtu": "9100",
       "speed": "40000"
+    }
+  },
+  "ROUTER_ASN": {
+    "65100": {
+      "router_id": "100.100.0.1"
     }
   },
   "SYSLOG_CONFIG": {
