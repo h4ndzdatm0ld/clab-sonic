@@ -6,11 +6,11 @@
             "mac": "22:39:ad:e9:31:8e",
             "hostname": "Leaf-3",
             "type": "LeafRouter",
-            "bgp_asn": "65100",
+            "bgp_asn": "65103",
             "buffer_model": "traditional",
             "default_bgp_status": "up",
             "default_pfcwd_status": "disable",
-            "frr_mgmt_framework_config": "true",
+            "frr_mgmt_framework_config": "false",
             "timezone": "UTC"
         }
     },

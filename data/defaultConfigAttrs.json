@@ -180,7 +180,7 @@
       "buffer_model": "traditional",
       "default_bgp_status": "up",
       "default_pfcwd_status": "disable",
-      "frr_mgmt_framework_config": "true",
+      "frr_mgmt_framework_config": "false",
       "hwsku": "Force10-S6000",
       "platform": "x86_64-kvm_x86_64-r0",
       "timezone": "UTC",

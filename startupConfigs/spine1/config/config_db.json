@@ -139,12 +139,12 @@
             "bgp_asn": "65200",
             "default_bgp_status": "up",
             "default_pfcwd_status": "disable",
-            "frr_mgmt_framework_config": "true",
+            "frr_mgmt_framework_config": "false",
             "hostname": "Spine-1",
             "hwsku": "Force10-S6000",
             "mac": "22:bc:a6:68:96:c0",
             "platform": "x86_64-kvm_x86_64-r0",
-            "type": "Spine",
+            "type": "SpineRouter",
             "buffer_model": "traditional",
             "timezone": "UTC"
         }

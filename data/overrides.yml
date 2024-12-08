@@ -1,0 +1,48 @@
+overrides:
+  leaf1:
+    DEVICE_METADATA:
+      localhost:
+        bgp_asn: "65101"
+        type: "LeafRouter"
+  leaf2:
+    DEVICE_METADATA:
+      localhost:
+        bgp_asn: "65102"
+  leaf3:
+    DEVICE_METADATA:
+      localhost:
+        bgp_asn: "65103"
+  leaf4:
+    DEVICE_METADATA:
+      localhost:
+        bgp_asn: "65104"
+  spine1:
+    DEVICE_METADATA:
+      localhost:
+        bgp_asn: "65200"
+        type: "SpineRouter"
+  spine2:
+    DEVICE_METADATA:
+      localhost:
+        bgp_asn: "65200"
+        type: "SpineRouter"
+  spine3:
+    DEVICE_METADATA:
+      localhost:
+        bgp_asn: "65200"
+        type: "SpineRouter"
+  spine4:
+    DEVICE_METADATA:
+      localhost:
+        bgp_asn: "65200"
+        type: "SpineRouter"
+  superspine1:
+    DEVICE_METADATA:
+      localhost:
+        bgp_asn: "65300"
+        type: "SuperSpineRouter"
+  superspine2:
+    DEVICE_METADATA:
+      localhost:
+        bgp_asn: "65300"
+        type: "SuperSpineRouter"
