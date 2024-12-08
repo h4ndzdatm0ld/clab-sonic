@@ -5,12 +5,12 @@
             "platform": "x86_64-kvm_x86_64-r0",
             "mac": "22:a2:e9:72:6d:93",
             "hostname": "Spine-4",
-            "type": "Spine",
+            "type": "SpineRouter",
             "bgp_asn": "65200",
             "buffer_model": "traditional",
             "default_bgp_status": "up",
             "default_pfcwd_status": "disable",
-            "frr_mgmt_framework_config": "true",
+            "frr_mgmt_framework_config": "false",
             "timezone": "UTC"
         }
     },

@@ -5,12 +5,12 @@
             "platform": "x86_64-kvm_x86_64-r0",
             "mac": "22:9f:74:92:bc:d0",
             "hostname": "SuperSpine-1",
-            "type": "SuperSpine",
+            "type": "SuperSpineRouter",
             "bgp_asn": "65300",
             "buffer_model": "traditional",
             "default_bgp_status": "up",
             "default_pfcwd_status": "disable",
-            "frr_mgmt_framework_config": "true",
+            "frr_mgmt_framework_config": "false",
             "timezone": "UTC"
         }
     },

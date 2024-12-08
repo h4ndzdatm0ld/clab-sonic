@@ -6,10 +6,10 @@
             "mac": "22:d2:ba:1a:6e:31",
             "default_bgp_status": "up",
             "default_pfcwd_status": "disable",
-            "frr_mgmt_framework_config": "true",
+            "frr_mgmt_framework_config": "false",
             "hostname": "Leaf-2",
             "type": "LeafRouter",
-            "bgp_asn": "65100",
+            "bgp_asn": "65102",
             "buffer_model": "traditional",
             "timezone": "UTC"
         }
@@ -283,16 +283,20 @@
         "Loopback0": {},
         "Loopback0|100.100.0.2/32": {}
     },
-    "ROUTER_ASN": {
-        "65100": {
-            "router_id": "100.100.0.2"
-        }
-    },
     "BGP_NEIGHBOR": {
-        "10.0.0.1": {
+        "10.100.1.5": {
             "rrclient": 0,
-            "name": "ARISTA01T2",
-            "local_addr": "10.0.0.0",
+            "name": "Leaf2Spine1",
+            "local_addr": "10.100.1.4",
+            "nhopself": 0,
+            "holdtime": "180",
+            "asn": "65200",
+            "keepalive": "60"
+        },
+        "10.100.1.7": {
+            "rrclient": 0,
+            "name": "Leaf2Spine2",
+            "local_addr": "10.100.1.6",
             "nhopself": 0,
             "holdtime": "180",
             "asn": "65200",
@@ -301,13 +305,11 @@
     },
     "INTERFACE": {
         "Ethernet0": {},
-        "Ethernet0|10.0.0.0/31": {},
+        "Ethernet0|10.100.1.4/31": {},
         "Ethernet4": {},
-        "Ethernet4|10.0.0.2/31": {},
+        "Ethernet4|10.100.1.6/31": {},
         "Ethernet8": {},
-        "Ethernet8|10.0.0.4/31": {},
         "Ethernet12": {},
-        "Ethernet12|10.0.0.6/31": {},
         "Ethernet16": {},
         "Ethernet20": {},
         "Ethernet24": {},

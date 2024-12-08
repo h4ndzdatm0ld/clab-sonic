@@ -6,11 +6,11 @@
             "mac": "22:39:ad:e9:31:8e",
             "hostname": "Leaf-3",
             "type": "LeafRouter",
-            "bgp_asn": "65100",
+            "bgp_asn": "65103",
             "buffer_model": "traditional",
             "default_bgp_status": "up",
             "default_pfcwd_status": "disable",
-            "frr_mgmt_framework_config": "true",
+            "frr_mgmt_framework_config": "false",
             "timezone": "UTC"
         }
     },
@@ -286,7 +286,7 @@
     "BGP_NEIGHBOR": {
         "10.0.0.1": {
             "rrclient": 0,
-            "name": "ARISTA01T2",
+            "name": "Leaf3Spine3",
             "local_addr": "10.0.0.0",
             "nhopself": 0,
             "holdtime": "180",
@@ -296,13 +296,11 @@
     },
     "INTERFACE": {
         "Ethernet0": {},
-        "Ethernet0|10.0.0.0/31": {},
+        "Ethernet0|10.100.1.8/31": {},
         "Ethernet4": {},
-        "Ethernet4|10.0.0.2/31": {},
+        "Ethernet4|10.100.1.10/31": {},
         "Ethernet8": {},
-        "Ethernet8|10.0.0.4/31": {},
         "Ethernet12": {},
-        "Ethernet12|10.0.0.6/31": {},
         "Ethernet16": {},
         "Ethernet20": {},
         "Ethernet24": {},

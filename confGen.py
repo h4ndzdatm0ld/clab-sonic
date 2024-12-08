@@ -7,7 +7,13 @@ from loguru import logger
 
 
 class ConfigGenerator:
-    def __init__(self, base_dir: str, default_attrs_path: str, overrides_path: str, dry_run: bool = True):
+    def __init__(
+        self,
+        base_dir: str,
+        default_attrs_path: str,
+        overrides_path: str,
+        dry_run: bool = True,
+    ):
         self.base_dir = base_dir
         self.default_attrs_path = default_attrs_path
         self.overrides_path = overrides_path
@@ -17,7 +23,7 @@ class ConfigGenerator:
     def load_json(file_path: str) -> Dict[str, Any]:
         """Load JSON data from a file."""
         logger.info(f"Loading JSON data from {file_path}...")
-        with open(file_path, 'r') as file:
+        with open(file_path, "r") as file:
             data = json.load(file)
         logger.info(f"Successfully loaded JSON data from {file_path}.")
         return data
@@ -26,13 +32,15 @@ class ConfigGenerator:
     def load_yaml(file_path: str) -> Dict[str, Any]:
         """Load YAML data from a file."""
         logger.info(f"Loading YAML data from {file_path}...")
-        with open(file_path, 'r') as file:
+        with open(file_path, "r") as file:
             data = yaml.safe_load(file)
         logger.info(f"Successfully loaded YAML data from {file_path}.")
         return data
 
     @staticmethod
-    def update_dict(target: Dict[str, Any], defaults: Dict[str, Any], path: str = "") -> bool:
+    def update_dict(
+        target: Dict[str, Any], defaults: Dict[str, Any], path: str = ""
+    ) -> bool:
         """
         Recursively update a dictionary with default values if keys are missing.
 
@@ -49,7 +57,9 @@ class ConfigGenerator:
         for key, value in defaults.items():
             current_path = f"{path}.{key}" if path else key
             if key not in target:
-                logger.warning(f"Adding missing key '{current_path}' with value: {value}")
+                logger.warning(
+                    f"Adding missing key '{current_path}' with value: {value}"
+                )
                 target[key] = value
                 updated = True
             elif isinstance(value, dict) and isinstance(target[key], dict):
@@ -63,6 +73,9 @@ class ConfigGenerator:
                     )
                     target[key] = value
                     updated = True
+                else:
+                    # logger.debug(f"Key '{current_path}' is already up-to-date. Skipping update.")
+                    continue
 
         return updated
 
@@ -96,10 +109,14 @@ class ConfigGenerator:
             return
 
         for hostname, override_content in overrides.items():
-            config_path = os.path.join(self.base_dir, hostname, "config", "config_db.json")
+            config_path = os.path.join(
+                self.base_dir, hostname, "config", "config_db.json"
+            )
 
             if not os.path.isfile(config_path):
-                logger.warning(f"Config file for hostname '{hostname}' not found at {config_path}. Skipping.")
+                logger.warning(
+                    f"Config file for hostname '{hostname}' not found at {config_path}. Skipping."
+                )
                 continue
 
             logger.info(f"Applying overrides for hostname '{hostname}'...")
@@ -116,14 +133,14 @@ class ConfigGenerator:
             config_path (str): Path to the configuration file to update.
         """
         logger.info(f"Reading configuration file: {config_path}")
-        with open(config_path, 'r') as file:
+        with open(config_path, "r") as file:
             config_data = json.load(file)
 
         if self.update_dict(config_data, updates):
             if self.dry_run:
                 logger.info(f"[DRY RUN] No changes will be made to {config_path}.")
             else:
-                with open(config_path, 'w') as file:
+                with open(config_path, "w") as file:
                     json.dump(config_data, file, indent=4)
                 logger.info(f"Updated {config_path} with provided updates.")
         else:
@@ -137,6 +154,7 @@ class ConfigGenerator:
         self.apply_defaults()
         self.apply_overrides()
         logger.info("Configuration generation process completed.")
+
 
 def main() -> None:
     """
@@ -169,7 +187,9 @@ def main() -> None:
 
     # Validate paths
     if not os.path.isdir(base_dir):
-        logger.error(f"Base directory '{base_dir}' does not exist or is not a directory.")
+        logger.error(
+            f"Base directory '{base_dir}' does not exist or is not a directory."
+        )
         return
 
     if not os.path.isfile(default_attrs_path):
@@ -185,7 +205,7 @@ def main() -> None:
         base_dir=base_dir,
         default_attrs_path=default_attrs_path,
         overrides_path=overrides_path,
-        dry_run=args.dry_run
+        dry_run=args.dry_run,
     )
     config_generator.run()
 

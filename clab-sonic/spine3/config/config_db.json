@@ -5,12 +5,12 @@
             "platform": "x86_64-kvm_x86_64-r0",
             "mac": "22:89:e8:4b:da:34",
             "hostname": "Spine-3",
-            "type": "Spine",
+            "type": "SpineRouter",
             "bgp_asn": "65200",
             "buffer_model": "traditional",
             "default_bgp_status": "up",
             "default_pfcwd_status": "disable",
-            "frr_mgmt_framework_config": "true",
+            "frr_mgmt_framework_config": "false",
             "timezone": "UTC"
         }
     },
@@ -286,7 +286,7 @@
     "BGP_NEIGHBOR": {
         "10.0.0.1": {
             "rrclient": 0,
-            "name": "ARISTA01T2",
+            "name": "Leaf3Spine3",
             "local_addr": "10.0.0.0",
             "nhopself": 0,
             "holdtime": "180",
