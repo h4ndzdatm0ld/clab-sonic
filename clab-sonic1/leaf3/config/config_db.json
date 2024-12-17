@@ -3,10 +3,10 @@
         "localhost": {
             "hwsku": "Force10-S6000",
             "platform": "x86_64-kvm_x86_64-r0",
-            "mac": "22:cf:fd:bc:b2:e2",
-            "hostname": "Leaf-4",
+            "mac": "22:39:ad:e9:31:8e",
+            "hostname": "Leaf-3",
             "type": "LeafRouter",
-            "bgp_asn": "65104",
+            "bgp_asn": "65103",
             "buffer_model": "traditional",
             "default_bgp_status": "up",
             "default_pfcwd_status": "disable",
@@ -281,13 +281,22 @@
     },
     "LOOPBACK_INTERFACE": {
         "Loopback0": {},
-        "Loopback0|100.100.0.4/32": {}
+        "Loopback0|100.100.0.3/32": {}
     },
     "BGP_NEIGHBOR": {
-        "10.0.0.1": {
+        "10.100.1.9": {
             "rrclient": 0,
-            "name": "ARISTA01T2",
-            "local_addr": "10.0.0.0",
+            "name": "Leaf3Spine1",
+            "local_addr": "10.100.1.8",
+            "nhopself": 0,
+            "holdtime": "180",
+            "asn": "65200",
+            "keepalive": "60"
+        },
+        "10.100.1.11": {
+            "rrclient": 0,
+            "name": "Leaf3Spine2",
+            "local_addr": "10.100.1.10",
             "nhopself": 0,
             "holdtime": "180",
             "asn": "65200",
@@ -296,9 +305,9 @@
     },
     "INTERFACE": {
         "Ethernet0": {},
-        "Ethernet0|10.100.1.12/31": {},
+        "Ethernet0|10.100.1.8/31": {},
         "Ethernet4": {},
-        "Ethernet4|10.100.1.14/31": {},
+        "Ethernet4|10.100.1.10/31": {},
         "Ethernet8": {},
         "Ethernet12": {},
         "Ethernet16": {},

@@ -141,6 +141,15 @@
             "name": "Leaf2Spine1",
             "nhopself": 0,
             "rrclient": 0
+        },
+        "10.100.1.8": {
+            "asn": "65103",
+            "holdtime": "180",
+            "keepalive": "60",
+            "local_addr": "10.100.1.9",
+            "name": "Leaf3Spine1",
+            "nhopself": 0,
+            "rrclient": 0
         }
     },
     "CRM": {
@@ -401,7 +410,8 @@
         "Ethernet12": {},
         "Ethernet4": {},
         "Ethernet4|10.100.1.5/31": {},
-        "Ethernet8": {}
+        "Ethernet8": {},
+        "Ethernet8|10.100.1.9/31": {}
     },
     "KDUMP": {
         "config": {

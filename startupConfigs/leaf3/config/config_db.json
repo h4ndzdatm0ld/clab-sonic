@@ -284,10 +284,19 @@
         "Loopback0|100.100.0.3/32": {}
     },
     "BGP_NEIGHBOR": {
-        "10.0.0.1": {
+        "10.100.1.9": {
             "rrclient": 0,
-            "name": "Leaf3Spine3",
-            "local_addr": "10.0.0.0",
+            "name": "Leaf3Spine1",
+            "local_addr": "10.100.1.8",
+            "nhopself": 0,
+            "holdtime": "180",
+            "asn": "65200",
+            "keepalive": "60"
+        },
+        "10.100.1.11": {
+            "rrclient": 0,
+            "name": "Leaf3Spine2",
+            "local_addr": "10.100.1.10",
             "nhopself": 0,
             "holdtime": "180",
             "asn": "65200",

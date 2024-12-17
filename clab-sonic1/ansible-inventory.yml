@@ -7,37 +7,25 @@ all:
   children:
     linux:
       hosts:
-        clab-sonic-client1:
+        clab-sonic1-client1:
           ansible_host: 172.20.20.101
-        clab-sonic-client2:
+        clab-sonic1-client2:
           ansible_host: 172.20.20.102
-        clab-sonic-client3:
+        clab-sonic1-client3:
           ansible_host: 172.20.20.103
-        clab-sonic-client4:
-          ansible_host: 172.20.20.104
     sonic-vm:
       vars:
         # ansible_connection: set ansible_connection variable if required
         ansible_user: admin
         ansible_password: admin
       hosts:
-        clab-sonic-leaf1:
+        clab-sonic1-leaf1:
           ansible_host: 172.20.20.12
-        clab-sonic-leaf2:
+        clab-sonic1-leaf2:
           ansible_host: 172.20.20.5
-        clab-sonic-leaf3:
+        clab-sonic1-leaf3:
           ansible_host: 172.20.20.15
-        clab-sonic-leaf4:
-          ansible_host: 172.20.20.10
-        clab-sonic-spine1:
+        clab-sonic1-spine1:
           ansible_host: 172.20.20.4
-        clab-sonic-spine2:
+        clab-sonic1-spine2:
           ansible_host: 172.20.20.9
-        clab-sonic-spine3:
-          ansible_host: 172.20.20.7
-        clab-sonic-spine4:
-          ansible_host: 172.20.20.8
-        clab-sonic-superspine1:
-          ansible_host: 172.20.20.16
-        clab-sonic-superspine2:
-          ansible_host: 172.20.20.14
