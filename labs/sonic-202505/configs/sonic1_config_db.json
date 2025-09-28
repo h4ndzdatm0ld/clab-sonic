@@ -113,43 +113,20 @@
     "BGP_DEVICE_GLOBAL": {
         "STATE": {
             "idf_isolation_state": "unisolated",
-            "tsa_enabled": "false"
-        }
-    },
-    "BGP_GLOBALS": {
-        "default": {
-            "default_ipv4_unicast": "true",
-            "local_asn": "65200",
-            "router_id": "100.100.10.2"
+            "tsa_enabled": "false",
+            "wcmp_enabled": "false"
         }
     },
     "BGP_NEIGHBOR": {
-        "10.100.1.2": {
-            "asn": "65101",
+        "10.255.0.2": {
+            "asn": "65002",
             "holdtime": "180",
             "keepalive": "60",
-            "local_addr": "10.100.1.3",
-            "name": "Leaf1Spine2",
-            "nhopself": 0,
-            "rrclient": 0
-        },
-        "10.100.1.6": {
-            "asn": "65102",
-            "holdtime": "180",
-            "keepalive": "60",
-            "local_addr": "10.100.1.7",
-            "name": "Leaf2Spine2",
-            "nhopself": 0,
-            "rrclient": 0
-        },
-        "10.100.1.10": {
-            "asn": "65103",
-            "holdtime": "180",
-            "keepalive": "60",
-            "local_addr": "10.100.1.11",
-            "name": "Leaf3Spine2",
-            "nhopself": 0,
-            "rrclient": 0
+            "local_addr": "10.255.0.1",
+            "name": "sonic2",
+            "nhopself": "0",
+            "rrclient": "0",
+            "bfd_session": "default|10.255.0.2"
         }
     },
     "CRM": {
@@ -213,17 +190,16 @@
     },
     "DEVICE_METADATA": {
         "localhost": {
-            "bgp_asn": "65200",
+            "bgp_asn": "65001",
             "buffer_model": "traditional",
             "default_bgp_status": "up",
             "default_pfcwd_status": "disable",
-            "frr_mgmt_framework_config": "false",
-            "hostname": "Spine-2",
+            "hostname": "sonic1",
             "hwsku": "Force10-S6000",
-            "mac": "22:24:8f:1e:07:b1",
+            "mac": "22:5c:7c:e4:7a:e3",
             "platform": "x86_64-kvm_x86_64-r0",
             "timezone": "UTC",
-            "type": "SpineRouter"
+            "type": "LeafRouter"
         }
     },
     "FEATURE": {
@@ -234,7 +210,7 @@
             "has_global_scope": "False",
             "has_per_asic_scope": "True",
             "high_mem_alert": "disabled",
-            "state": "{% if not DEVICE_RUNTIME_METADATA['ETHERNET_PORTS_PRESENT'] or ('CHASSIS_METADATA' in DEVICE_RUNTIME_METADATA and DEVICE_RUNTIME_METADATA['CHASSIS_METADATA']['module_type'] in ['supervisor']) %}disabled{% else %}enabled{% endif %}",
+            "state": "enabled",
             "support_syslog_rate_limit": "true"
         },
         "database": {
@@ -254,7 +230,7 @@
             "has_per_asic_scope": "False",
             "high_mem_alert": "disabled",
             "set_owner": "local",
-            "state": "{% if not (DEVICE_METADATA is defined and DEVICE_METADATA['localhost'] is defined and DEVICE_METADATA['localhost']['type'] is defined and DEVICE_METADATA['localhost']['type'] is not in ['ToRRouter', 'EPMS', 'MgmtTsToR', 'MgmtToRRouter', 'BmcMgmtToRRouter']) %}enabled{% else %}disabled{% endif %}",
+            "state": "disabled",
             "support_syslog_rate_limit": "True"
         },
         "eventd": {
@@ -287,8 +263,8 @@
         "lldp": {
             "auto_restart": "enabled",
             "delayed": "True",
-            "has_global_scope": "{% if ('CHASSIS_METADATA' in DEVICE_RUNTIME_METADATA and DEVICE_RUNTIME_METADATA['CHASSIS_METADATA']['module_type'] in ['linecard']) %}False{% else %}True{% endif %}",
-            "has_per_asic_scope": "{% if not DEVICE_RUNTIME_METADATA['ETHERNET_PORTS_PRESENT'] or ('CHASSIS_METADATA' in DEVICE_RUNTIME_METADATA and DEVICE_RUNTIME_METADATA['CHASSIS_METADATA']['module_type'] in ['supervisor']) %}False{% else %}True{% endif %}",
+            "has_global_scope": "True",
+            "has_per_asic_scope": "True",
             "high_mem_alert": "disabled",
             "state": "enabled",
             "support_syslog_rate_limit": "true"
@@ -301,7 +277,7 @@
             "has_per_asic_scope": "True",
             "high_mem_alert": "disabled",
             "set_owner": "local",
-            "state": "{% if 'type' in DEVICE_METADATA['localhost'] and DEVICE_METADATA['localhost']['type'] == 'SpineRouter' and DEVICE_RUNTIME_METADATA['MACSEC_SUPPORTED'] %}enabled{% else %}disabled{% endif %}",
+            "state": "disabled",
             "support_syslog_rate_limit": "True"
         },
         "mgmt-framework": {
@@ -319,7 +295,7 @@
             "has_global_scope": "True",
             "has_per_asic_scope": "False",
             "high_mem_alert": "disabled",
-            "state": "{% if 'subtype' in DEVICE_METADATA['localhost'] and DEVICE_METADATA['localhost']['subtype'] == 'DualToR' %}enabled{% else %}always_disabled{% endif %}",
+            "state": "always_disabled",
             "support_syslog_rate_limit": "true"
         },
         "nat": {
@@ -334,7 +310,7 @@
         "pmon": {
             "auto_restart": "enabled",
             "check_up_status": "false",
-            "delayed": "{% if 'type' in DEVICE_METADATA['localhost'] and DEVICE_METADATA['localhost']['type'] == 'SpineRouter' %}False{% else %}True{% endif %}",
+            "delayed": "True",
             "has_global_scope": "True",
             "has_per_asic_scope": "False",
             "high_mem_alert": "disabled",
@@ -393,31 +369,66 @@
             "has_global_scope": "False",
             "has_per_asic_scope": "True",
             "high_mem_alert": "disabled",
-            "state": "{% if not DEVICE_RUNTIME_METADATA['ETHERNET_PORTS_PRESENT'] %}disabled{% else %}enabled{% endif %}",
+            "state": "enabled",
+            "support_syslog_rate_limit": "true"
+        },
+        "bfd": {
+            "auto_restart": "enabled",
+            "delayed": "True",
+            "has_global_scope": "True",
+            "has_per_asic_scope": "False",
+            "high_mem_alert": "disabled",
+            "state": "enabled",
             "support_syslog_rate_limit": "true"
         }
     },
     "FLEX_COUNTER_TABLE": {
         "ACL": {
-            "FLEX_COUNTER_DELAY_STATUS": "true",
             "FLEX_COUNTER_STATUS": "disable",
             "POLL_INTERVAL": "10000"
+        },
+        "BUFFER_POOL_WATERMARK": {
+            "FLEX_COUNTER_STATUS": "enable"
+        },
+        "PFCWD": {
+            "FLEX_COUNTER_STATUS": "enable"
+        },
+        "PG_DROP": {
+            "FLEX_COUNTER_STATUS": "enable"
+        },
+        "PG_WATERMARK": {
+            "FLEX_COUNTER_STATUS": "enable"
+        },
+        "PORT": {
+            "FLEX_COUNTER_STATUS": "enable"
+        },
+        "PORT_BUFFER_DROP": {
+            "FLEX_COUNTER_STATUS": "enable"
+        },
+        "QUEUE": {
+            "FLEX_COUNTER_STATUS": "enable"
+        },
+        "QUEUE_WATERMARK": {
+            "FLEX_COUNTER_STATUS": "enable"
+        },
+        "RIF": {
+            "FLEX_COUNTER_STATUS": "enable"
         }
     },
     "INTERFACE": {
         "Ethernet0": {},
-        "Ethernet0|10.100.1.3/31": {},
-        "Ethernet12": {},
-        "Ethernet4": {},
-        "Ethernet4|10.100.1.7/31": {},
-        "Ethernet8": {},
-        "Ethernet8|10.100.1.11/31": {}
+        "Ethernet0|10.255.0.1/30": {},
+        "Loopback0": {},
+        "Loopback0|10.1.0.1/32": {}
     },
     "KDUMP": {
         "config": {
             "enabled": "false",
             "memory": "0M-2G:256M,2G-4G:320M,4G-8G:384M,8G-:448M",
-            "num_dumps": "3"
+            "num_dumps": "3",
+            "remote": "false",
+            "ssh_path": "/a/b/c",
+            "ssh_string": "user@localhost"
         }
     },
     "LOGGER": {
@@ -457,11 +468,23 @@
             "LOGLEVEL": "SAI_LOG_LEVEL_NOTICE",
             "LOGOUTPUT": "SYSLOG"
         },
+        "SAI_API_DASH_APPLIANCE": {
+            "LOGLEVEL": "SAI_LOG_LEVEL_NOTICE",
+            "LOGOUTPUT": "SYSLOG"
+        },
         "SAI_API_DASH_DIRECTION_LOOKUP": {
             "LOGLEVEL": "SAI_LOG_LEVEL_NOTICE",
             "LOGOUTPUT": "SYSLOG"
         },
         "SAI_API_DASH_ENI": {
+            "LOGLEVEL": "SAI_LOG_LEVEL_NOTICE",
+            "LOGOUTPUT": "SYSLOG"
+        },
+        "SAI_API_DASH_FLOW": {
+            "LOGLEVEL": "SAI_LOG_LEVEL_NOTICE",
+            "LOGOUTPUT": "SYSLOG"
+        },
+        "SAI_API_DASH_HA": {
             "LOGLEVEL": "SAI_LOG_LEVEL_NOTICE",
             "LOGOUTPUT": "SYSLOG"
         },
@@ -477,11 +500,23 @@
             "LOGLEVEL": "SAI_LOG_LEVEL_NOTICE",
             "LOGOUTPUT": "SYSLOG"
         },
+        "SAI_API_DASH_OUTBOUND_PORT_MAP": {
+            "LOGLEVEL": "SAI_LOG_LEVEL_NOTICE",
+            "LOGOUTPUT": "SYSLOG"
+        },
         "SAI_API_DASH_OUTBOUND_ROUTING": {
             "LOGLEVEL": "SAI_LOG_LEVEL_NOTICE",
             "LOGOUTPUT": "SYSLOG"
         },
         "SAI_API_DASH_PA_VALIDATION": {
+            "LOGLEVEL": "SAI_LOG_LEVEL_NOTICE",
+            "LOGOUTPUT": "SYSLOG"
+        },
+        "SAI_API_DASH_TRUSTED_VNI": {
+            "LOGLEVEL": "SAI_LOG_LEVEL_NOTICE",
+            "LOGOUTPUT": "SYSLOG"
+        },
+        "SAI_API_DASH_TUNNEL": {
             "LOGLEVEL": "SAI_LOG_LEVEL_NOTICE",
             "LOGOUTPUT": "SYSLOG"
         },
@@ -514,6 +549,10 @@
             "LOGOUTPUT": "SYSLOG"
         },
         "SAI_API_HOSTIF": {
+            "LOGLEVEL": "SAI_LOG_LEVEL_NOTICE",
+            "LOGOUTPUT": "SYSLOG"
+        },
+        "SAI_API_ICMP_ECHO": {
             "LOGLEVEL": "SAI_LOG_LEVEL_NOTICE",
             "LOGOUTPUT": "SYSLOG"
         },
@@ -593,6 +632,10 @@
             "LOGLEVEL": "SAI_LOG_LEVEL_NOTICE",
             "LOGOUTPUT": "SYSLOG"
         },
+        "SAI_API_PREFIX_COMPRESSION": {
+            "LOGLEVEL": "SAI_LOG_LEVEL_NOTICE",
+            "LOGOUTPUT": "SYSLOG"
+        },
         "SAI_API_QOS_MAP": {
             "LOGLEVEL": "SAI_LOG_LEVEL_NOTICE",
             "LOGOUTPUT": "SYSLOG"
@@ -634,6 +677,10 @@
             "LOGOUTPUT": "SYSLOG"
         },
         "SAI_API_SWITCH": {
+            "LOGLEVEL": "SAI_LOG_LEVEL_NOTICE",
+            "LOGOUTPUT": "SYSLOG"
+        },
+        "SAI_API_SYNCE": {
             "LOGLEVEL": "SAI_LOG_LEVEL_NOTICE",
             "LOGOUTPUT": "SYSLOG"
         },
@@ -685,6 +732,10 @@
             "LOGLEVEL": "NOTICE",
             "LOGOUTPUT": "SYSLOG"
         },
+        "fpmsyncd": {
+            "LOGLEVEL": "NOTICE",
+            "LOGOUTPUT": "SYSLOG"
+        },
         "gearsyncd": {
             "LOGLEVEL": "NOTICE",
             "LOGOUTPUT": "SYSLOG"
@@ -713,6 +764,10 @@
             "LOGLEVEL": "NOTICE",
             "LOGOUTPUT": "SYSLOG"
         },
+        "rebootbackend": {
+            "LOGLEVEL": "NOTICE",
+            "LOGOUTPUT": "SYSLOG"
+        },
         "syncd": {
             "LOGLEVEL": "NOTICE",
             "LOGOUTPUT": "SYSLOG"
@@ -722,6 +777,10 @@
             "LOGOUTPUT": "SYSLOG"
         },
         "teamsyncd": {
+            "LOGLEVEL": "NOTICE",
+            "LOGOUTPUT": "SYSLOG"
+        },
+        "telemetry": {
             "LOGLEVEL": "NOTICE",
             "LOGOUTPUT": "SYSLOG"
         },
@@ -748,7 +807,7 @@
     },
     "LOOPBACK_INTERFACE": {
         "Loopback0": {},
-        "Loopback0|100.100.10.2/32": {}
+        "Loopback0|10.1.0.1/32": {}
     },
     "NTP": {
         "global": {
@@ -778,78 +837,43 @@
         "Ethernet0": {
             "admin_status": "up",
             "alias": "fortyGigE0/0",
+            "dhcp_rate_limit": "300",
             "index": "0",
             "lanes": "25,26,27,28",
             "mtu": "9100",
             "speed": "40000"
         },
-        "Ethernet100": {
+        "Ethernet4": {
             "admin_status": "up",
-            "alias": "fortyGigE0/100",
-            "index": "25",
-            "lanes": "121,122,123,124",
+            "alias": "fortyGigE0/4",
+            "dhcp_rate_limit": "300",
+            "index": "1",
+            "lanes": "29,30,31,32",
             "mtu": "9100",
             "speed": "40000"
         },
-        "Ethernet104": {
+        "Ethernet8": {
             "admin_status": "up",
-            "alias": "fortyGigE0/104",
-            "index": "26",
-            "lanes": "81,82,83,84",
-            "mtu": "9100",
-            "speed": "40000"
-        },
-        "Ethernet108": {
-            "admin_status": "up",
-            "alias": "fortyGigE0/108",
-            "index": "27",
-            "lanes": "85,86,87,88",
-            "mtu": "9100",
-            "speed": "40000"
-        },
-        "Ethernet112": {
-            "admin_status": "up",
-            "alias": "fortyGigE0/112",
-            "index": "28",
-            "lanes": "93,94,95,96",
-            "mtu": "9100",
-            "speed": "40000"
-        },
-        "Ethernet116": {
-            "admin_status": "up",
-            "alias": "fortyGigE0/116",
-            "index": "29",
-            "lanes": "89,90,91,92",
+            "alias": "fortyGigE0/8",
+            "dhcp_rate_limit": "300",
+            "index": "2",
+            "lanes": "33,34,35,36",
             "mtu": "9100",
             "speed": "40000"
         },
         "Ethernet12": {
             "admin_status": "up",
             "alias": "fortyGigE0/12",
+            "dhcp_rate_limit": "300",
             "index": "3",
             "lanes": "37,38,39,40",
-            "mtu": "9100",
-            "speed": "40000"
-        },
-        "Ethernet120": {
-            "admin_status": "up",
-            "alias": "fortyGigE0/120",
-            "index": "30",
-            "lanes": "101,102,103,104",
-            "mtu": "9100",
-            "speed": "40000"
-        },
-        "Ethernet124": {
-            "admin_status": "up",
-            "alias": "fortyGigE0/124",
-            "index": "31",
-            "lanes": "97,98,99,100",
             "mtu": "9100",
             "speed": "40000"
         },
         "Ethernet16": {
             "admin_status": "up",
             "alias": "fortyGigE0/16",
+            "dhcp_rate_limit": "300",
             "index": "4",
             "lanes": "45,46,47,48",
             "mtu": "9100",
@@ -858,6 +882,7 @@
         "Ethernet20": {
             "admin_status": "up",
             "alias": "fortyGigE0/20",
+            "dhcp_rate_limit": "300",
             "index": "5",
             "lanes": "41,42,43,44",
             "mtu": "9100",
@@ -866,6 +891,7 @@
         "Ethernet24": {
             "admin_status": "up",
             "alias": "fortyGigE0/24",
+            "dhcp_rate_limit": "300",
             "index": "6",
             "lanes": "1,2,3,4",
             "mtu": "9100",
@@ -874,6 +900,7 @@
         "Ethernet28": {
             "admin_status": "up",
             "alias": "fortyGigE0/28",
+            "dhcp_rate_limit": "300",
             "index": "7",
             "lanes": "5,6,7,8",
             "mtu": "9100",
@@ -882,6 +909,7 @@
         "Ethernet32": {
             "admin_status": "up",
             "alias": "fortyGigE0/32",
+            "dhcp_rate_limit": "300",
             "index": "8",
             "lanes": "13,14,15,16",
             "mtu": "9100",
@@ -890,22 +918,16 @@
         "Ethernet36": {
             "admin_status": "up",
             "alias": "fortyGigE0/36",
+            "dhcp_rate_limit": "300",
             "index": "9",
             "lanes": "9,10,11,12",
-            "mtu": "9100",
-            "speed": "40000"
-        },
-        "Ethernet4": {
-            "admin_status": "up",
-            "alias": "fortyGigE0/4",
-            "index": "1",
-            "lanes": "29,30,31,32",
             "mtu": "9100",
             "speed": "40000"
         },
         "Ethernet40": {
             "admin_status": "up",
             "alias": "fortyGigE0/40",
+            "dhcp_rate_limit": "300",
             "index": "10",
             "lanes": "17,18,19,20",
             "mtu": "9100",
@@ -914,6 +936,7 @@
         "Ethernet44": {
             "admin_status": "up",
             "alias": "fortyGigE0/44",
+            "dhcp_rate_limit": "300",
             "index": "11",
             "lanes": "21,22,23,24",
             "mtu": "9100",
@@ -922,6 +945,7 @@
         "Ethernet48": {
             "admin_status": "up",
             "alias": "fortyGigE0/48",
+            "dhcp_rate_limit": "300",
             "index": "12",
             "lanes": "53,54,55,56",
             "mtu": "9100",
@@ -930,6 +954,7 @@
         "Ethernet52": {
             "admin_status": "up",
             "alias": "fortyGigE0/52",
+            "dhcp_rate_limit": "300",
             "index": "13",
             "lanes": "49,50,51,52",
             "mtu": "9100",
@@ -938,6 +963,7 @@
         "Ethernet56": {
             "admin_status": "up",
             "alias": "fortyGigE0/56",
+            "dhcp_rate_limit": "300",
             "index": "14",
             "lanes": "57,58,59,60",
             "mtu": "9100",
@@ -946,6 +972,7 @@
         "Ethernet60": {
             "admin_status": "up",
             "alias": "fortyGigE0/60",
+            "dhcp_rate_limit": "300",
             "index": "15",
             "lanes": "61,62,63,64",
             "mtu": "9100",
@@ -954,6 +981,7 @@
         "Ethernet64": {
             "admin_status": "up",
             "alias": "fortyGigE0/64",
+            "dhcp_rate_limit": "300",
             "index": "16",
             "lanes": "69,70,71,72",
             "mtu": "9100",
@@ -962,6 +990,7 @@
         "Ethernet68": {
             "admin_status": "up",
             "alias": "fortyGigE0/68",
+            "dhcp_rate_limit": "300",
             "index": "17",
             "lanes": "65,66,67,68",
             "mtu": "9100",
@@ -970,6 +999,7 @@
         "Ethernet72": {
             "admin_status": "up",
             "alias": "fortyGigE0/72",
+            "dhcp_rate_limit": "300",
             "index": "18",
             "lanes": "73,74,75,76",
             "mtu": "9100",
@@ -978,22 +1008,16 @@
         "Ethernet76": {
             "admin_status": "up",
             "alias": "fortyGigE0/76",
+            "dhcp_rate_limit": "300",
             "index": "19",
             "lanes": "77,78,79,80",
-            "mtu": "9100",
-            "speed": "40000"
-        },
-        "Ethernet8": {
-            "admin_status": "up",
-            "alias": "fortyGigE0/8",
-            "index": "2",
-            "lanes": "33,34,35,36",
             "mtu": "9100",
             "speed": "40000"
         },
         "Ethernet80": {
             "admin_status": "up",
             "alias": "fortyGigE0/80",
+            "dhcp_rate_limit": "300",
             "index": "20",
             "lanes": "109,110,111,112",
             "mtu": "9100",
@@ -1002,6 +1026,7 @@
         "Ethernet84": {
             "admin_status": "up",
             "alias": "fortyGigE0/84",
+            "dhcp_rate_limit": "300",
             "index": "21",
             "lanes": "105,106,107,108",
             "mtu": "9100",
@@ -1010,6 +1035,7 @@
         "Ethernet88": {
             "admin_status": "up",
             "alias": "fortyGigE0/88",
+            "dhcp_rate_limit": "300",
             "index": "22",
             "lanes": "113,114,115,116",
             "mtu": "9100",
@@ -1018,6 +1044,7 @@
         "Ethernet92": {
             "admin_status": "up",
             "alias": "fortyGigE0/92",
+            "dhcp_rate_limit": "300",
             "index": "23",
             "lanes": "117,118,119,120",
             "mtu": "9100",
@@ -1026,10 +1053,84 @@
         "Ethernet96": {
             "admin_status": "up",
             "alias": "fortyGigE0/96",
+            "dhcp_rate_limit": "300",
             "index": "24",
             "lanes": "125,126,127,128",
             "mtu": "9100",
             "speed": "40000"
+        },
+        "Ethernet100": {
+            "admin_status": "up",
+            "alias": "fortyGigE0/100",
+            "dhcp_rate_limit": "300",
+            "index": "25",
+            "lanes": "121,122,123,124",
+            "mtu": "9100",
+            "speed": "40000"
+        },
+        "Ethernet104": {
+            "admin_status": "up",
+            "alias": "fortyGigE0/104",
+            "dhcp_rate_limit": "300",
+            "index": "26",
+            "lanes": "81,82,83,84",
+            "mtu": "9100",
+            "speed": "40000"
+        },
+        "Ethernet108": {
+            "admin_status": "up",
+            "alias": "fortyGigE0/108",
+            "dhcp_rate_limit": "300",
+            "index": "27",
+            "lanes": "85,86,87,88",
+            "mtu": "9100",
+            "speed": "40000"
+        },
+        "Ethernet112": {
+            "admin_status": "up",
+            "alias": "fortyGigE0/112",
+            "dhcp_rate_limit": "300",
+            "index": "28",
+            "lanes": "93,94,95,96",
+            "mtu": "9100",
+            "speed": "40000"
+        },
+        "Ethernet116": {
+            "admin_status": "up",
+            "alias": "fortyGigE0/116",
+            "dhcp_rate_limit": "300",
+            "index": "29",
+            "lanes": "89,90,91,92",
+            "mtu": "9100",
+            "speed": "40000"
+        },
+        "Ethernet120": {
+            "admin_status": "up",
+            "alias": "fortyGigE0/120",
+            "dhcp_rate_limit": "300",
+            "index": "30",
+            "lanes": "101,102,103,104",
+            "mtu": "9100",
+            "speed": "40000"
+        },
+        "Ethernet124": {
+            "admin_status": "up",
+            "alias": "fortyGigE0/124",
+            "dhcp_rate_limit": "300",
+            "index": "31",
+            "lanes": "97,98,99,100",
+            "mtu": "9100",
+            "speed": "40000"
+        }
+    },
+    "SNMP": {
+        "LOCATION": {
+            "Location": "public"
+        }
+    },
+    "SNMP_COMMUNITY": {
+        "public": {
+            "TYPE": "RO"
         }
     },
     "SYSLOG_CONFIG": {
@@ -1119,15 +1220,16 @@
     },
     "VERSIONS": {
         "DATABASE": {
-            "VERSION": "version_202405_01"
+            "VERSION": "version_202505_01"
         }
     },
-    "VLAN": {
-        "Vlan1000": {
-            "vlanid": "1000"
-        },
-        "Vlan2000": {
-            "vlanid": "2000"
+    "BFD_SESSION": {
+        "default|10.255.0.2": {
+            "local_addr": "10.255.0.1",
+            "desired_min_tx": "300",
+            "required_min_rx": "300",
+            "detection_mult": "3",
+            "ttl": "255"
         }
     }
 }

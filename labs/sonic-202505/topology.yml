@@ -1,0 +1,36 @@
+# Two-node SONiC lab pinned to the 202505 image
+name: sonic-duo-202505
+prefix: clab
+
+topology:
+  nodes:
+    sonic1:
+      kind: sonic-vm
+      image: h4ndzdatm0ld/sonic-vm:202505
+      startup-config: ./configs/sonic1_config_db.json
+      enforce-startup-config: true
+      ports:
+        - 22:22
+        - 80:80
+        - 443:443
+      env:
+        CLAB_SSH_CONNECTION: true
+    sonic2:
+      kind: sonic-vm
+      image: h4ndzdatm0ld/sonic-vm:202505
+      startup-config: ./configs/sonic2_config_db.json
+      enforce-startup-config: true
+      ports:
+        - 2022:22
+        - 8080:80
+        - 8443:443
+      env:
+        CLAB_SSH_CONNECTION: true
+
+  links:
+    - endpoints: ["sonic1:eth1", "sonic2:eth1"]
+    - endpoints: ["sonic1:eth2", "sonic2:eth2"]
+
+mgmt:
+  network: sonic-mgmt
+  ipv4_subnet: 172.20.20.0/24
